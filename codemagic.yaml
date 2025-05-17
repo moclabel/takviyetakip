@@ -1,18 +1,14 @@
 workflows:
   build-android:
-    name: Build Kivy App for Android
+    name: Build with Buildozer
     environment:
-      machine:
-        os: linux
-      vars:
-        ANDROID_HOME: /opt/android-sdk
+      os: linux
+      python: "3.10"
     scripts:
-      - echo "Setting up Python environment"
       - python3 -m venv venv
-      - source venv/bin/activate
+      - . venv/bin/activate
       - pip install --upgrade pip
-      - pip install cython buildozer
-      - echo "Initializing Buildozer"
+      - pip install buildozer cython
       - buildozer android debug
     artifacts:
       - bin/*.apk

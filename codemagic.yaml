@@ -1,8 +1,8 @@
 workflows:
   build-android:
-    name: Build Android on mac_mini_m2
+    name: Build on Mac mini M2
     environment:
-      instance_type: mac_mini_m2
+      instance_type: mac_mini_m2  # ✅ Doğru alan budur
       os: macos
       shell: bash
       python: "3.10"
@@ -12,7 +12,6 @@ workflows:
       - source venv/bin/activate
       - pip install --upgrade pip
       - pip install buildozer cython
-      - echo "📦 Buildozer ile APK oluşturuluyor..."
       - buildozer android debug
     artifacts:
       - bin/*.apk

@@ -1,0 +1,17 @@
+workflows:
+  build-android:
+    name: Kivy Android Build
+    environment:
+      image: mac_mini_m2
+      vars:
+        ANDROID_HOME: $HOME/Library/Android/sdk
+    scripts:
+      - echo "Setting up Python environment"
+      - python3 -m venv venv
+      - source venv/bin/activate
+      - pip install --upgrade pip
+      - pip install buildozer cython
+      - echo "Building APK..."
+      - buildozer android debug
+    artifacts:
+      - build/*.apk
